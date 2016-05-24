@@ -37,7 +37,7 @@ public class JdbcSpatialiteTest extends AbstractSpatialiteTest {
 			connection = dataSource.getConnection();
 
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					TestUtils.getTextFromFile("spatialite-db-test-query.sql").replaceAll("\\:distance", "?"));
+					TestUtils.getTextFromFile("query.sql").replaceAll("\\:distance", "?"));
 			preparedStatement.setInt(1, distance);
 			ResultSet resultSet = preparedStatement.executeQuery();
 

@@ -49,7 +49,7 @@ public class Sql2oSpatialiteTest extends AbstractSpatialiteTest {
 		try (Connection connection = sql2o.open()) {
 
 			return connection
-					.createQuery(TestUtils.getTextFromFile("spatialite-db-test-query.sql"))
+					.createQuery(TestUtils.getTextFromFile("query.sql"))
 					.addParameter("distance", distance)
 					.executeAndFetch(Integer.class);
 		}
@@ -60,7 +60,7 @@ public class Sql2oSpatialiteTest extends AbstractSpatialiteTest {
 		try (Connection connection = sql2o.open()) {
 
 			connection
-					.createQuery(TestUtils.getTextFromFile("spatialite-db-test-insert.sql"))
+					.createQuery(TestUtils.getTextFromFile("insert.sql"))
 					.addParameter("id", 4)
 					.addParameter("name", "Marseille")
 					.addParameter("coordinate", "POINT(5.382878 43.284014)")

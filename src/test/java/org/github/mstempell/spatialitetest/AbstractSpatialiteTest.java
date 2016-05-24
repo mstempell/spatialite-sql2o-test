@@ -53,8 +53,8 @@ public abstract class AbstractSpatialiteTest {
 
 			statement.execute(SQL_CONNECTION_INIT);
 			statement.execute(SQL_INIT_SPATIAL_METADATA);
-			statement.executeUpdate(TestUtils.getTextFromFile("spatialite-db-test-create_tables.sql"));
-			statement.executeUpdate(TestUtils.getTextFromFile("spatialite-db-test-initial_insert.sql"));
+			statement.executeUpdate(TestUtils.getTextFromFile("create_tables.sql"));
+			statement.executeUpdate(TestUtils.getTextFromFile("initial_insert.sql"));
 
 			connection.commit();
 
