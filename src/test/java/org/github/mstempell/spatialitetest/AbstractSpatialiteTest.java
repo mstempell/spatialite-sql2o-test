@@ -51,7 +51,6 @@ public abstract class AbstractSpatialiteTest {
 			connection.setAutoCommit(false);
 			Statement statement = connection.createStatement();
 
-			statement.execute(SQL_CONNECTION_INIT);
 			statement.execute(SQL_INIT_SPATIAL_METADATA);
 			statement.executeUpdate(TestUtils.getTextFromFile("create_tables.sql"));
 			statement.executeUpdate(TestUtils.getTextFromFile("initial_insert.sql"));
