@@ -18,22 +18,30 @@ public class Sql2oSpatialiteTest extends AbstractSpatialiteTest {
 
 		Sql2o sql2o = new Sql2o(dataSource);
 		
+		List<Integer> ids = null;
+		
 		Assert.assertEquals(0, getTestQueryResults(sql2o, 40000).size());
 		
-		Assert.assertEquals(1, getTestQueryResults(sql2o, 41000).size());
-		Assert.assertEquals(2, getTestQueryResults(sql2o, 41000).get(0).intValue());
+		ids = getTestQueryResults(sql2o, 41000);
+		
+		Assert.assertEquals(1, ids.size());
+		Assert.assertEquals(2, ids.get(0).intValue());
 
 		Assert.assertEquals(1, getTestQueryResults(sql2o, 550000).size());
+
+		ids = getTestQueryResults(sql2o, 560000);
 		
-		Assert.assertEquals(2, getTestQueryResults(sql2o, 560000).size());
-		Assert.assertEquals(3, getTestQueryResults(sql2o, 560000).get(1).intValue());
+		Assert.assertEquals(2, ids.size());
+		Assert.assertEquals(3, ids.get(1).intValue());
 		
 		insertMarseilleLocation(sql2o);
 		
 		Assert.assertEquals(2, getTestQueryResults(sql2o, 660000).size());
 
-		Assert.assertEquals(3, getTestQueryResults(sql2o, 663000).size());
-		Assert.assertEquals(4, getTestQueryResults(sql2o, 663000).get(2).intValue());
+		ids = getTestQueryResults(sql2o, 663000);
+		
+		Assert.assertEquals(3, ids.size());
+		Assert.assertEquals(4, ids.get(2).intValue());
 	}
 
 	public List<Integer> getTestQueryResults(Sql2o sql2o, int distance) {
