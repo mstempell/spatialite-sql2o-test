@@ -20,7 +20,7 @@ public abstract class AbstractSpatialiteTest {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private static final String DATABASE_JDBC_URL = "jdbc:sqlite::memory:";
-	private static final String SQL_CONNECTION_INIT = "SELECT load_extension('mod_spatialite.dll')";
+	private static final String SQL_CONNECTION_INIT = "SELECT load_extension('mod_spatialite')";
 	private static final String SQL_INIT_SPATIAL_METADATA = "SELECT InitSpatialMetadata()";
 
 	protected DataSource dataSource;
