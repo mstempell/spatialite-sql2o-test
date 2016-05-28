@@ -1,5 +1,10 @@
 SELECT
-	location2.id
+	location2.id,
+	ST_Distance(
+		location1.gps_coordinate,
+		location2.gps_coordinate,
+		1
+	) as distance
 FROM
 	location AS location1,
 	location AS location2
