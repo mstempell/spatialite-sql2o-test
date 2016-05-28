@@ -22,14 +22,14 @@ public class JdbcSpatialiteTest extends AbstractSpatialiteTest {
 	public void test_using_JDBC() {
 
 		Assert.assertArrayEquals(Arrays.asList().toArray(), getTestQueryResults(dataSource, 40000).toArray());
-		Assert.assertArrayEquals(Arrays.asList("2").toArray(), getTestQueryResults(dataSource, 41000).toArray());
-		Assert.assertArrayEquals(Arrays.asList("2").toArray(), getTestQueryResults(dataSource, 550000).toArray());
-		Assert.assertArrayEquals(Arrays.asList("2", "3").toArray(), getTestQueryResults(dataSource, 560000).toArray());
+		Assert.assertArrayEquals(Arrays.asList(2).toArray(), getTestQueryResults(dataSource, 41000).toArray());
+		Assert.assertArrayEquals(Arrays.asList(2).toArray(), getTestQueryResults(dataSource, 550000).toArray());
+		Assert.assertArrayEquals(Arrays.asList(2, 3).toArray(), getTestQueryResults(dataSource, 560000).toArray());
 	}
 
-	public List<String> getTestQueryResults(DataSource dataSource, int distance) {
+	public List<Integer> getTestQueryResults(DataSource dataSource, int distance) {
 
-		List<String> ids = null;
+		List<Integer> ids = null;
 		java.sql.Connection connection = null;
 
 		try {
@@ -41,9 +41,9 @@ public class JdbcSpatialiteTest extends AbstractSpatialiteTest {
 			preparedStatement.setInt(1, distance);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-			ids = new ArrayList<>();
+			ids = new ArrayList<Integer>();
 			while (resultSet.next()) {
-				ids.add(resultSet.getString("id"));
+				ids.add(resultSet.getInt("id"));
 			}
 
 		} catch (SQLException e) {
