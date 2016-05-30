@@ -38,6 +38,10 @@ public class Sql2oSpatialiteTest extends AbstractSpatialiteTest {
 		Assert.assertTrue(results.get(1).getDistance() > 550000);
 		Assert.assertTrue(results.get(1).getDistance() < 551000);
 
+		insertMarseilleLocationButDoNotCommit(sql2o);
+
+		Assert.assertEquals(2, getTestQueryResults(sql2o, 1000000).size());
+
 		insertMarseilleLocation(sql2o);
 
 		Assert.assertEquals(2, getTestQueryResults(sql2o, 660000).size());
@@ -87,7 +91,18 @@ public class Sql2oSpatialiteTest extends AbstractSpatialiteTest {
 
 	public void insertMarseilleLocation(Sql2o sql2o) {
 
-		try (Connection connection = sql2o.open()) {
+		try (Connection connection = sql2o.beginTransaction(java.sql.Connection.TRANSACTION_READ_UNCOMMITTED)) {
+
+			connection.createQuery(TestUtils.getTextFromFile("insert.sql")).addParameter("id", 4)
+					.addParameter("name", "Marseille").addParameter("coordinate", "POINT(5.382878 43.284014)")
+					.executeUpdate();
+			connection.commit();
+		}
+	}
+
+	public void insertMarseilleLocationButDoNotCommit(Sql2o sql2o) {
+
+		try (Connection connection = sql2o.beginTransaction(java.sql.Connection.TRANSACTION_READ_UNCOMMITTED)) {
 
 			connection.createQuery(TestUtils.getTextFromFile("insert.sql")).addParameter("id", 4)
 					.addParameter("name", "Marseille").addParameter("coordinate", "POINT(5.382878 43.284014)")
