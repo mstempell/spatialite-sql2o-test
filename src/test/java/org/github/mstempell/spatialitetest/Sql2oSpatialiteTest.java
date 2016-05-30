@@ -60,22 +60,15 @@ public class Sql2oSpatialiteTest extends AbstractSpatialiteTest {
 		private double distance;
 
 		public int getId() {
-
 			return id;
 		}
-
 		public void setId(int id) {
-
 			this.id = id;
 		}
-
 		public double getDistance() {
-
 			return distance;
 		}
-
 		public void setDistance(double distance) {
-
 			this.distance = distance;
 		}
 	}
@@ -93,9 +86,7 @@ public class Sql2oSpatialiteTest extends AbstractSpatialiteTest {
 
 		try (Connection connection = sql2o.beginTransaction(java.sql.Connection.TRANSACTION_READ_UNCOMMITTED)) {
 
-			connection.createQuery(TestUtils.getTextFromFile("insert.sql")).addParameter("id", 4)
-					.addParameter("name", "Marseille").addParameter("coordinate", "POINT(5.382878 43.284014)")
-					.executeUpdate();
+			executeMarseilleLocationInsert(connection);
 			connection.commit();
 		}
 	}
@@ -104,9 +95,14 @@ public class Sql2oSpatialiteTest extends AbstractSpatialiteTest {
 
 		try (Connection connection = sql2o.beginTransaction(java.sql.Connection.TRANSACTION_READ_UNCOMMITTED)) {
 
-			connection.createQuery(TestUtils.getTextFromFile("insert.sql")).addParameter("id", 4)
-					.addParameter("name", "Marseille").addParameter("coordinate", "POINT(5.382878 43.284014)")
-					.executeUpdate();
+			executeMarseilleLocationInsert(connection);
 		}
+	}
+
+	private void executeMarseilleLocationInsert(Connection connection) {
+
+		connection.createQuery(TestUtils.getTextFromFile("insert.sql")).addParameter("id", 4)
+				.addParameter("name", "Marseille").addParameter("coordinate", "POINT(5.382878 43.284014)")
+				.executeUpdate();
 	}
 }
