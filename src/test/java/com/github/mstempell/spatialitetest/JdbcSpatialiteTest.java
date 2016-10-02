@@ -1,4 +1,4 @@
-package org.github.mstempell.spatialitetest;
+package com.github.mstempell.spatialitetest;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

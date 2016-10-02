@@ -1,4 +1,4 @@
-package org.github.mstempell.spatialitetest;
+package com.github.mstempell.spatialitetest;
 
 import java.io.File;
 import java.io.IOException;
